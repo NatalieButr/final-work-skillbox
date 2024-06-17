@@ -1,0 +1,40 @@
+version: '3.5'
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.3
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: balance
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - final_work
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  java-app:
+    container_name: java-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/balance
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - final_work
+
+networks:
+  final_work:
+    name: final_work
+
+volumes:
+  mysql_data:
