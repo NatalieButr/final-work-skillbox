@@ -15,9 +15,6 @@ import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.List;
 
-
-
-
 public class Main {
     public static void main(String[] args) throws FileNotFoundException, ParseException {
         if (args.length < 2) {
@@ -109,7 +106,6 @@ public class Main {
             if (timesheet != null) {
                 session.delete(timesheet);
 
-                // Проверить, есть ли у задачи другие связанные таймшиты
                 String sql = "SELECT COUNT(*) FROM Timesheet ti WHERE ti.task_id = :taskId";
                 Query<Long> query = session.createQuery(sql, Long.class);
                 query.setParameter("taskId", timesheet.getTask().getId());

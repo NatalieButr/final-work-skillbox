@@ -48,6 +48,8 @@ CREATE TABLE `balance`.`timesheet` (
 
 CREATE TABLE balance.`timesheet_history` (
      `id` int unsigned NOT NULL AUTO_INCREMENT,
+     `task_id` int unsigned NOT NULL,
+     `employee_id` int unsigned NOT NULL,
      `title` varchar(255) NOT NULL,
      `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
      `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,

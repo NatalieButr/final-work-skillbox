@@ -26,17 +26,6 @@ public class PositionDao {
         }
     }
 
-    public List<Position> getPositions() {
-
-        try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            return session.createQuery("from Position", Position.class).list();
-        }  catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public Position findByName(String name) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Position> query = session.createQuery("FROM Position WHERE name = :name", Position.class);

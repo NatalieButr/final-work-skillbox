@@ -1,10 +1,9 @@
 package butrim.dao;
-
 import butrim.entity.Employee;
-import butrim.entity.Position;
+import butrim.utils.HibernateUtil;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import butrim.utils.HibernateUtil;
 import org.hibernate.query.Query;
 
 

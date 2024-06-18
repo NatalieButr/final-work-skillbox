@@ -25,8 +25,10 @@ public class ImportData {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Scanner s = new Scanner(line).useDelimiter(",");
+
             String name = s.next();
             Integer rate = s.nextInt();
+
             Position position = new Position();
             position.setName(name);
             position.setRate(rate);
@@ -46,6 +48,7 @@ public class ImportData {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Scanner s = new Scanner(line).useDelimiter(",");
+
             String name = s.next();
             String positionName = s.next();
 
@@ -82,14 +85,11 @@ public class ImportData {
             } else {
                 System.out.println("Task with title '" + title + "' already exists. Skipping: " + line);
             }
-
         }
-
         scanner.close();
     }
 
     public static void importTimesheet(String filename) throws FileNotFoundException, ParseException {
-
         Scanner scanner = new Scanner(new File(DATA_PATH + File.separatorChar + filename));
         TimesheetDao timesheetDao = new TimesheetDao();
         EmployeeDao employeeDao = new EmployeeDao();
@@ -117,7 +117,6 @@ public class ImportData {
                 continue;
             }
 
-
             Timesheet timesheet = new Timesheet();
             timesheet.setName(name);
             timesheet.setDate_start(startTime);
@@ -132,6 +131,4 @@ public class ImportData {
 
         scanner.close();
     }
-
-
 }

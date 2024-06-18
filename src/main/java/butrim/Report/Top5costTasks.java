@@ -6,7 +6,6 @@ import org.hibernate.query.NativeQuery;
 import butrim.utils.HibernateUtil;
 import java.util.List;
 
-
 public class Top5costTasks {
     public static void report() {
         Transaction transaction = null;
@@ -28,11 +27,9 @@ public class Top5costTasks {
             List<Object[]> resultList = query.list();
 
             if (!resultList.isEmpty()) {
-                // Print table header
                 System.out.println(String.format("%-10s %-30s %-10s", "Position", "Title Task", "Total Cost"));
                 System.out.println("------------------------------------------------------------");
 
-                // Print table rows
                 for (Object[] row : resultList) {
                     System.out.println(String.format("%-10s %-30s %-10s", row[0], row[1], row[2]));
                 }
