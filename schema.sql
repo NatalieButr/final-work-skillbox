@@ -1,7 +1,10 @@
 DROP DATABASE IF EXISTS `balance`;
 CREATE DATABASE `balance`;
+       USE balance;
 
-CREATE TABLE `balance`.`positions` (
+
+
+CREATE TABLE IF NOT EXISTS positions (
     `position_id` int unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `rate` int unsigned NOT NULL,
@@ -10,7 +13,7 @@ CREATE TABLE `balance`.`positions` (
     CONSTRAINT `check_not_empty_string` CHECK ((not(regexp_like(`name`,_utf8mb4'^s*$'))))
 );
 
-CREATE TABLE `balance`.`tasks` (
+CREATE TABLE IF NOT EXISTS  tasks (
     id int unsigned NOT NULL AUTO_INCREMENT,
     title varchar(255) NOT NULL,
     PRIMARY KEY (id),
@@ -19,7 +22,7 @@ CREATE TABLE `balance`.`tasks` (
 
 );
 
-CREATE TABLE `balance`.`employees` (
+CREATE TABLE IF NOT EXISTS  employees (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `position_id` int unsigned NOT NULL,
@@ -31,7 +34,7 @@ CREATE TABLE `balance`.`employees` (
 
 );
 
-CREATE TABLE `balance`.`timesheet` (
+CREATE TABLE IF NOT EXISTS  timesheet (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `task_id` int unsigned NOT NULL,
@@ -46,7 +49,7 @@ CREATE TABLE `balance`.`timesheet` (
     CONSTRAINT `date_time_timesheet_check` CHECK ((`date_end` > `date_start`))
 );
 
-CREATE TABLE balance.`timesheet_history` (
+CREATE TABLE IF NOT EXISTS  timesheet_history (
      `id` int unsigned NOT NULL AUTO_INCREMENT,
      `task_id` int unsigned NOT NULL,
      `employee_id` int unsigned NOT NULL,
